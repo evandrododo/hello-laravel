@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableArtigos extends Migration {
+class CreateArtigosTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -17,8 +17,8 @@ class CreateTableArtigos extends Migration {
 			$table->increments('id');
       $table->string('titulo');
       $table->text('corpo');
-			$table->timestamps('publicado_em');
 			$table->timestamps();
+			$table->timestamp('publicado_em');
 		});
 	}
 

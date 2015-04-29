@@ -14,6 +14,9 @@
 Route::get('/', 'WelcomeController@index');
 Route::get('contato', 'PagesController@contato');
 
+Route::get('artigos', 'ArtigosController@index');
+Route::get('artigos/{id}', 'ArtigosController@show');
+
 Route::get('home', 'HomeController@index');
 
 

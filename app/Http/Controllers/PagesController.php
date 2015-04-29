@@ -9,11 +9,9 @@ class PagesController extends Controller {
 
 	public function contato()
 	{
-    $email = "evandro.carreira@gmail.com";
+    $data['email'] = "evandro.carreira@gmail.com";
     
-		return view("pages.contato")->with([
-      "email" => $email
-    ]);
+		return view("pages.contato",$data);
 	}
 
 }
