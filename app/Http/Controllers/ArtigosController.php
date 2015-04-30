@@ -4,13 +4,14 @@ use App\Artigo;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Request;
 
 class ArtigosController extends Controller {
 
 	public function index()
   {
-    $artigos = Artigo::all();
+    $artigos = Artigo::latest('publicado_em')->publicado()->get();
     return view('artigos.index', compact('artigos') );
     return $artigos;
   }
@@ -19,6 +20,18 @@ class ArtigosController extends Controller {
   {
     $artigo = Artigo::findOrFail($id); 
     return view('artigos.show', compact('artigo'));
+  }
+
+	public function create()
+  {
+    return view('artigos.create');
+  }
+
+	public function store()
+  {    
+    Artigo::create(Request::all());
+    
+    return redirect('artigos');
   }
 
 }
