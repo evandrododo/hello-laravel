@@ -15,10 +15,16 @@ class CreateArtigosTable extends Migration {
 		Schema::create('artigos', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->integer('user_id')->unsigned();
       $table->string('titulo');
       $table->text('corpo');
 			$table->timestamps();
 			$table->timestamp('publicado_em');
+
+			$table->foreign('user_id')
+						->references('id')
+						->on('users')
+						->onDelete('cascade');
 		});
 	}
 

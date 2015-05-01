@@ -13,14 +13,15 @@
 
 Route::get('/', 'WelcomeController@index');
 Route::get('contato', 'PagesController@contato');
-
+/*
 Route::get('artigos', 'ArtigosController@index');
 Route::get('artigos/inserir', 'ArtigosController@create');
 Route::get('artigos/{id}', 'ArtigosController@show');
 Route::post('artigos', 'ArtigosController@store');
+*/
+Route::resource('artigos','ArtigosController');
 
 Route::get('home', 'HomeController@index');
-
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
