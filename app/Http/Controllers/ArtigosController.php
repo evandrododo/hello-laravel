@@ -3,14 +3,24 @@
 use App\Artigo;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Auth;
 
 use Carbon\Carbon;
 
 class ArtigosController extends Controller {
 
+
+    public function __construct()
+    {
+        $this->middleware('auth', ['only' => 'create'] );
+    }
+
 	/**
-	 *Função padrão do Controller
-     *Exibe todos os artigos com data de publicação anterior a hoje
+	 * Função padrão do Controller
+     *
+     * Exibe todos os artigos com data 
+     * de publicação anterior a hoje
+     *
 	 */
     public function index()
     {
@@ -23,11 +33,15 @@ class ArtigosController extends Controller {
         $artigos = Artigo::latest('publicado_em')->get();
         return view('artigos.index', compact('artigos') );
     }
+
+
     public function show($id)
     {
         $artigo = Artigo::findOrFail($id); 
         return view('artigos.show', compact('artigo'));
     }
+
+
 
 	public function create()
     {
@@ -36,8 +50,11 @@ class ArtigosController extends Controller {
 
     public function store(Requests\ArtigoRequest $request)
     {
-        //Auth::user();
-        Artigo::create($request->all());
+
+        $artigo = new Artigo($request->all());
+        
+        Auth::user()->artigos()->save($artigo);
+
         return redirect('artigos');
     }
   

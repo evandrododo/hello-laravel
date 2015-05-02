@@ -20,6 +20,7 @@ class AuthController extends Controller {
 
 	use AuthenticatesAndRegistersUsers;
 
+	protected $redirectTo = '/artigos';
 	/**
 	 * Create a new authentication controller instance.
 	 *
